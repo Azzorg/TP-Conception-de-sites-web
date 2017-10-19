@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <meta charset="UTF-8">
+  <title>OnlineShop - Produits</title>
+</head>
+<body>
+  <header>
+    <div>
+      <a href="index.html">
+        <img src="assets/img/logo.svg" alt="logo">
+      </a>
+
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="products.html" class="active">Produits</a>
+        <a href="contact.html">Contact</a>
+      <a class="shopping-cart" href="./shopping-cart.html" title="Panier">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+        <i class="fa fa-shopping-cart fa-stack-1x"></i>
+      </span>
+      <span class="count">3</span>
+      </a>
+      </nav>
+    </div>
+  </header>
+
+	<main class="dividedMain">
+
+  	<aside>
+  		<section>
+  			<h1>Catégories</h1>
+  			<div id="product-categories">
+  				<button>Appareils photo</button>
+  				<button>Consoles</button>
+  				<button>Ecrans</button>
+  				<button>Ordinateurs</button>
+  				<button class="selected">Tous les produits</button>
+  			</div>
+  		</section>
+
+  		<section>
+  			<h1>Classement</h1>
+  			<div id="product-criteria">
+  				<button class="selected">Prix (bas-haut)</button>
+  				<button>Prix (haut-bas)</button>
+  				<button>Nom (A-Z)</button>
+  				<button>Nom (Z-A)</button>
+  			</div>
+  		</section>
+  	</aside>
+
+    <div>
+  		<h1 class="col2 left-element">Produits</h1>
+  		<p class="col2 right-element">6 produits</p>
+
+  		<!-- En prévision du responsive, nous préférons mettre un élément <div> plutôt qu'un tableau qui risque d'être trop statique -->
+  		<div id="products-list">
+
+        <section class="not-last-prod-row">
+          <a href="product.html">
+            <h1>Manette Xbox 360</h1>
+            <img src="assets/img/xbox-controller.png" alt="image produit">
+            <p>29.99$</p>
+          </a>
+        </section>
+
+        <section class="not-last-prod-row">
+          <a href="product.html">
+            <h1>Moniteur 19"</h1>
+            <img src="assets/img/monitor.png" alt="image produit">
+            <p>149.99$</p>
+          </a>
+        </section>
+
+        <section>
+          <a href="product.html">
+            <h1>Apple TV</h1>
+            <img src="assets/img/apple-tv.png" alt="image produit">
+            <p>249.99$</p>
+          </a>
+        </section>
+
+        <section class="not-last-prod-row">
+  				<a href="product.html">
+  					<h1>Canon PowerShot SD1300</h1>
+  					<img src="assets/img/camera-3.png" alt="image produit">
+  					<p>299.99$</p>
+  				</a>
+  			</section>
+
+        <section class="not-last-prod-row">
+          <a href="product.html">
+            <h1>Console PS3"</h1>
+            <img src="assets/img/ps3.png" alt="image produit">
+            <p>349.99$</p>
+          </a>
+        </section>
+
+  			<section>
+  				<a href="product.html">
+  					<h1>Nikon D7000</h1>
+  					<img src="assets/img/camera-2.png" alt="image produit">
+  					<p>549.99$</p>
+  				</a>
+  			</section>
+
+        <section class="not-last-prod-row">
+          <a href="product.html">
+            <h1>Portable professionnel</h1>
+            <img src="assets/img/laptop-2.png" alt="image produit">
+            <p>599.99$</p>
+          </a>
+        </section>
+
+        <section class="not-last-prod-row">
+          <a href="product.html">
+            <h1>Portable</h1>
+            <img src="assets/img/laptop-1.png" alt="image produit">
+            <p>699.99$</p>
+          </a>
+        </section>
+
+  			<section>
+  				<a href="product.html">
+  					<h1>Canon EOS 5D Mark II</h1>
+  					<img src="assets/img/camera-1.png" alt="image produit">
+  					<p>2999.99$</p>
+  				</a>
+  			</section>
+
+  		</div>
+    </div>
+	</main>
+
+
+	<footer>
+		<p>
+			GOUPIL Camille 1922286
+			<br>
+			CHARLOT Théo 1922297
+		</p>
+	</footer>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <meta charset="UTF-8">
+  <title>OnlineShop - Commande</title>
+</head>
+<body>
+	<header>
+		<div>
+			<a href="index.html">
+				<img src="assets/img/logo.svg" alt="logo">
+			</a>
+
+			<nav>
+				<a href="index.html" class="active">Accueil</a>
+				<a href="products.html">Produits</a>
+				<a href="contact.html">Contact</a>
+			<a class="shopping-cart" href="./shopping-cart.html" title="Panier">
+			<span class="fa-stack fa-lg">
+				<i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+				<i class="fa fa-shopping-cart fa-stack-1x"></i>
+			</span>
+			<span class="count">3</span>
+			</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<h1>Commande</h1>
+
+		<form action="confirmation.html">
+			<section>
+				<h1>Contact</h1>
+				<div class="parent-col">
+					<div class="col2 form-container">
+						<p>Prénom</p>
+						<input id="first-name" class="infos-commande form-control" type="text" name="first-name" placeholder="Prénom" required>
+					</div>
+
+					<div class="col2 form-container">
+						<p>Nom</p>
+						<input id="last-name" class="infos-commande form-control" type="text" name="last-name" placeholder="Nom" required>
+					</div>
+
+					<div class="col2 form-container">
+						<p>Courriel</p>
+						<input id="email" class="infos-commande form-control" type="email" name="email" placeholder="Email" required>
+					</div>
+
+					<div class="col2 form-container">
+						<p>Téléphone</p>
+						<input id="phone" class="infos-commande form-control" type="text" name="phone" placeholder="Téléphone" required>
+					</div>
+				</div>
+			</section>
+
+
+			<section>
+				<h1>Paiement</h1>
+				<div class="parent-col">
+					<div class="col2 form-container">
+						<p>Numéro de carte</p>
+						<input id="credit-card" class="infos-commande form-control" type="text" name="credit-card" placeholder="Numéro de carte de crédit" required>
+					</div>
+					<div class="col2 form-container">
+						<p>Date d'expiration de la carte</p>
+						<input id="credit-card-expiry" class="infos-commande form-control" type="text" name="credit-card-expiry" placeholder="Date expiration de la carte" required>
+					</div>
+				</div>
+			</section>
+
+			<!--A revoir pour positionner le bouton à droite-->
+			<div>
+				<button type="submit" class="standardButton">
+					Payer <i class="fa fa-angle-double-right"></i>
+				</button>
+			</div>
+		</form>
+	</main>
+
+
+	<footer>
+		<p>
+			GOUPIL Camille 1922286
+			<br>
+			CHARLOT Théo 1922297
+		</p>
+	</footer>
+</body>
+</html>
