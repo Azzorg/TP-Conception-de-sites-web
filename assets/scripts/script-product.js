@@ -58,7 +58,8 @@ $(document).ready(function() {
     });
 
     //Gestion du clic sur le bouton
-    $('#add-to-cart-form button').click(function(){
+    $('#add-to-cart-form button').click(function(e){
+        e.preventDefault();
         var alreadyOrdered = false;
         for(var i=0; i<lstShopProducts.length; i++){
             if(lstShopProducts[i].id == actualProductId){
@@ -74,7 +75,4 @@ $(document).ready(function() {
         alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
         console.log(lstShopProducts);
     });
-
-
-    
 });
