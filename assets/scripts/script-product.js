@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    //Tableau avec id, name, price, quantity
+    var lstShopProducts = [];
+    var actualProductId = 1;
+    var actualProduct;
+
+
+    lstShopProducts.push({id : "1", name : "Nikkon300", price : "200", quantity : "3"});
+
+    //Récupère l'id passé en paramètre dans l'url
     function GetURLParameter(sParam){
         var sPageURL = window.location.search.substring(1);
         var sURLVariables = sPageURL.split('&');
@@ -10,10 +19,11 @@ $(document).ready(function() {
         }
     }
 
+    //Rempli la page html avec les informations dans le fichier Json products.json
     $.getJSON( "./data/products.json", function( data ) {
         var isFound = false;
         $.each( data, function( key, val ) {
-            if(val.id == 1){
+            if(val.id == actualProductId){
                 $('#product-name').html(val.name);
                 $('#product-image').attr('src', "./assets/img/" + val.image);
                 $('#product-desc').html(val.description);
@@ -24,12 +34,17 @@ $(document).ready(function() {
                 //var price = $.number(val.price, 2, ',');
 
                 $('#product-price').html(val.price + " $");
-                
-                isFound = true;
-            }
 
-            if(isFound){
-                return val;
+                //Rempli la quantité si ce produit est déjà dans le panier
+                for(var i=0; i < lstShopProducts.length; i++){
+                    if(lstShopProducts[i].id == actualProductId){
+                        $('.form-control').attr('value', lstShopProducts[i].quantity);
+                    }
+                }
+                isFound = true;
+                if(isFound){
+                    actualProduct = val;
+                }
             }
         })
 
@@ -37,10 +52,29 @@ $(document).ready(function() {
         //(<=> l'id envoyé dans l'url ne correspond à aucun produit présent dans le fichier json)
         if(!isFound){
                 $('main').empty();
-                $('header').after('<main><h1>Page non trouvée</h1></main>');
+                $('header').after('<main><h1>Page non trouvée!</h1></main>');
         }
 
     });
+
+    //Gestion du clic sur le bouton
+    $('#add-to-cart-form button').click(function(){
+        var alreadyOrdered = false;
+        for(var i=0; i<lstShopProducts.length; i++){
+            if(lstShopProducts[i].id == actualProductId){
+                lstShopProducts[i].quantity = $('.form-control').val();
+                alreadyOrdered = true;
+            }
+        }
+
+        if(!alreadyOrdered){
+            lstShopProducts.push({id : actualProduct.id, name : actualProduct.name, price : actualProduct.price, quantity : $('.form-control').val()});
+        }
+
+        alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
+        console.log(lstShopProducts);
+    });
+
 
     
 });
