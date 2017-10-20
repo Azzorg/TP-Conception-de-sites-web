@@ -4,6 +4,8 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 	<script type="text/javascript" src="./assets/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./assets/scripts/script-product.js"></script>
+	<script type="text/javascript" src="./assets/scripts/script-entete.js"></script>
   <meta charset="UTF-8">
   <title>OnlineShop - Produit</title>
 </head>
@@ -32,32 +34,25 @@
 
 
 	<main>
-		<h1>Portable professionnel</h1>
+		<h1 id="product-name"></h1>
 		<div class="parent-col">
 			<div class="image-produit col2">
-				<img src="assets/img/laptop-2.png" alt="image produit">
+				<img id="product-image" alt="image produit">
 			</div>
 			
 			<div class="infos-produit col2">
 				<div>
 					<h2>Description</h2>
-					<p> 
-						Portable professionnel idéal pour le travail à la maison ou dans une petite entreprise. L’ordinateur dispose d’un grand nombre de ports (HDMI, VGA, USB, Ethernet, etc.) ce qui facilite le branchement de différents périphériques. Le portable est équipé d’un processeur i5 de troisième génération, de 8 Go de RAM et d’un disque dur SSD de 256 Go.
-					</p>
+					<p id="product-desc"></p>
 				</div>
 
 				<div>
 					<h2>Caractéristiques</h2>
-					<ul>
-						<li>Processus i5 de troisième génération</li>
-						<li>8 Go de RAM</li>
-						<li>Disque SSD de 256 Go</li>
-						<li>Ports HDMI, VGA, USB, Ethernet et Firewire</li>
-						<li>Construction robuste</li>
+					<ul id="product-features">
 					</ul>
 				</div>
 				<form class="achat-box">
-					<p>Prix : <span>599.99$</span></p>
+					<p>Prix : <span id="product-price"></span></p>
 					<div>
 						Quantité :
 						<input class="form-control" type="number" name="quantity" min="1" value="1">
