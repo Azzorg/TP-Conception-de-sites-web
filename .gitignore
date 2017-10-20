@@ -1,1 +1,4 @@
+#Gitignore file
+
+#Ignore folders
 node_modules/
