@@ -3,14 +3,18 @@ $(document).ready(function() {
 
   var items = new Array();
   var selectedItems = new Array();
+  var nbProducts;
 
+  /* Parsing du fichier Json */
   $.getJSON( "././data/products.json", function( data ) {
     var sortByPrice = true;
     items = data;
     selectedItems = items;
+    nbProducts = items.length;
 
     }).done(function(){
 
+      /* Gestion des catégories */
       $('#cameras').click(function(){
         selectCategory("cameras");
         clearCategoryClasses();
@@ -37,10 +41,10 @@ $(document).ready(function() {
         $("#all").addClass("selected");
       })
 
+      /* Tri la liste des produits avec le critère par défaut une première fois */
+      sortJsonField(getCriteriaClass());
 
-      sortJsonField("priceUp");
-
-      /* Click criteria */
+      /* Gestion des critères */
       $('#priceUp').click(function(){
         sortJsonField("priceUp");
         clearCriteriaClasses();
@@ -67,21 +71,28 @@ $(document).ready(function() {
 
   });
 
+  /* Selectionne les produits à afficher en fonction de leur catégorie */
   function selectCategory(category){
     selectedItems = [];
     if(category == "all"){
-      selectedItems = items;
+      selectedItems = items.slice();
+      nbProducts = items.length;
     }
     else{
+      nbProducts = 0;
       $.each( items, function( key, val ) {
         if(val.category == category){
           console.log(key)
           selectedItems.push(items[key]);
+          nbProducts ++;
         }
       });
     }
+    sortJsonField(getCriteriaClass());
+    addItemsToHtmlProducts();
   };
 
+  /* Tri la liste des items à afficher en fonction du critère */
   function sortJsonField(field){
     function sortJson(a,b){
       if(field == "priceUp"){ return a.price > b.price? 1 : -1; }
@@ -96,18 +107,19 @@ $(document).ready(function() {
         return nameLowerCaseA > nameLowerCaseB? -1 : 1;}
     }
     selectedItems.sort(sortJson);
-    addItemsToHtml();
+    addItemsToHtmlProducts();
   };
 
-  function addItemsToHtml(){
+  /* Ajoute les éléments issus du la liste dans le html */
+  function addItemsToHtmlProducts(){
     $( "#products-list" ).empty();
     $.each( selectedItems, function( key, val ) {
       console.log(val);
 
       //Insere le produit dans la liste
       $( "#products-list" ).append(
-        "<section class=\"not-last-prod-row\">\
-          <a href=\"product.html\">\
+        "<section id=\""+val.id+"\" class=\"not-last-prod-row\">\
+          <a href=\"product.html?id=#"+val.id +"\">\
             <h1>"+val.name+"</h1>\
             <img src=\"assets/img/"+val.image+"\" alt=\"image produit\">\
             <p>"+val.price+"</p>\
@@ -117,8 +129,19 @@ $(document).ready(function() {
 
     });
 
+    $("#products-count").empty();
+    $("#products-count").append(nbProducts+" produits");
   };
 
+  /* Récupère quel critère doit être appliqué */
+  function getCriteriaClass(){
+    if($("#priceUp").hasClass("selected")){return "priceUp";}
+    else if($("#priceDown").hasClass("selected")){return "priceDown";}
+    else if($("#alphaUp").hasClass("selected")){return "alphaUp";}
+    else if($("#alphaDown").hasClass("selected")){return "alphaDown";}
+  }
+
+  /* Enleve la classe selected à tous les critères */
   function clearCriteriaClasses(){
     $("#priceUp").removeClass();
     $("#priceDown").removeClass();
@@ -126,6 +149,7 @@ $(document).ready(function() {
     $("#alphaDown").removeClass();
   };
 
+  /* Enleve la classe selected à toutes les catégories */
   function clearCategoryClasses(){
     $("#cameras").removeClass();
     $("#consoles").removeClass();

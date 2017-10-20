@@ -398,6 +398,24 @@ tr > td:last-child, tr > th:last-child{
   text-align : right;
 }
 
+.remove-item-button{
+  display : inline-block;
+  position : relative;
+  height : 30px;
+  width : 30px;
+  border-radius: 50%;
+  border : none;
+  background-color: #dddddd;
+  font-weight : bold;
+  font-size: 15pt;
+  text-align: center;
+  margin : 0px 10px;
+}
+
+.remove-item-button:hover{
+  background-color: #bbbbbb;
+}
+
 .cart-button{
   display : inline-block;
   position : relative;
