@@ -5,7 +5,7 @@ $(document).ready(function() {
     var actualProduct;
 
 
-    lstShopProducts.push({id : "1", name : "Nikkon300", price : "200", quantity : "3"});
+    lstShopProducts.push({id : "2", name : "Nikkon300", price : "200", quantity : "3"});
 
     //Récupère l'id passé en paramètre dans l'url
     function GetURLParameter(sParam){
@@ -51,8 +51,8 @@ $(document).ready(function() {
         // Si l'élément n'a pas été trouvé dans le fichier jsons 
         //(<=> l'id envoyé dans l'url ne correspond à aucun produit présent dans le fichier json)
         if(!isFound){
-                $('main').empty();
-                $('header').after('<main><h1>Page non trouvée!</h1></main>');
+            $('main').empty();
+            $('header').after('<main><h1>Page non trouvée!</h1></main>');
         }
 
     });
@@ -74,5 +74,8 @@ $(document).ready(function() {
 
         alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
         console.log(lstShopProducts);
+        $('#dialog').slideUp( 300 ).delay( 1000 ).fadeIn( 400 );
+        $('#dialog').slideDown( 300 ).delay( 1000 ).fadeOut( 400 );
+
     });
 });

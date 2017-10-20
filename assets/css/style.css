@@ -345,6 +345,24 @@ aside section > div > button:hover{
 	height: 25px;
 }
 
+#dialog{
+  position : relative;
+  height: auto;
+  width: 230px;
+  bottom : 25px;
+  background-color: #1C1C1C;
+  padding: 15px;
+  border-radius: 5px ;
+  box-shadow: 0px 1px 5px #2E2E2E;
+  display: none;
+}
+
+#dialog p{
+  color: white;
+  font-size : 11pt;
+  text-align: center;
+}
+
 /* Contact */
 .contact-contour{
   border-style: solid;
