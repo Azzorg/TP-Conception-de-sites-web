@@ -6,7 +6,7 @@ $(document).ready(function() {
   var nbProducts;
 
   /* Parsing du fichier Json */
-  $.getJSON( "././data/products.json", function( data ) {
+  $.getJSON( "./data/products.json", function( data ) {
     var sortByPrice = true;
     items = data;
     selectedItems = items;
@@ -64,11 +64,7 @@ $(document).ready(function() {
         sortJsonField("alphaDown");
         clearCriteriaClasses();
         $("#alphaDown").addClass("selected");
-
       })
-
-
-
   });
 
   /* Selectionne les produits à afficher en fonction de leur catégorie */
@@ -119,7 +115,7 @@ $(document).ready(function() {
       //Insere le produit dans la liste
       $( "#products-list" ).append(
         "<section id=\""+val.id+"\" class=\"not-last-prod-row\">\
-          <a href=\"product.html?id=#"+val.id +"\">\
+          <a href=\"product.html?id="+val.id +"\">\
             <h1>"+val.name+"</h1>\
             <img src=\"assets/img/"+val.image+"\" alt=\"image produit\">\
             <p>"+val.price+"</p>\
