@@ -48,7 +48,7 @@ $(document).ready(function() {
                                 <p class=\"total-cart\" id=\"total-amount\">Total : <b>"+totalPrice.toFixed(2)+" $</b></p>\
                                   <div class=\"final-buttons-cart\">\
                                   <div class=\"col2 cancel-button\">\
-                                       <button  class=\"standardButton\">Vider le panier</button>\
+                                       <button id=\"remove-all-items-button\" class=\"standardButton\">Vider le panier</button>\
                                   </div>\
                                   <form action=\"order.html\" class=\"col2 confirm-button\">\
                                     <input type=\"submit\" value=\"Commander\" class=\"standardButton\">\
@@ -104,6 +104,15 @@ $(document).ready(function() {
             }
           });
           addItemsToHtmlShopping(lstShopProducts);
+        });
+
+        /* OnClick du bouton de suppréssion du panier complet */
+        $("#remove-all-items-button").click(function(){
+          var responseConfirm = confirm("Voulez-vous supprimer tous les produits du panier ?");
+          if(responseConfirm == true){
+            lstShopProducts = [];
+            addItemsToHtmlShopping(lstShopProducts);
+          }
         });
 
         }
