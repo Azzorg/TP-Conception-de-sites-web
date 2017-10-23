@@ -434,7 +434,7 @@ tr > td:last-child, tr > th:last-child{
   background-color: #bbbbbb;
 }
 
-.cart-button{
+.remove-quantity-button{
   display : inline-block;
   position : relative;
   height : 30px;
@@ -448,7 +448,25 @@ tr > td:last-child, tr > th:last-child{
   margin : 0px 10px;
 }
 
-.cart-button:hover{
+.remove-quantity-button:hover{
+  background-color: #bbbbbb;
+}
+
+.add-quantity-button{
+  display : inline-block;
+  position : relative;
+  height : 30px;
+  width : 30px;
+  border-radius: 50%;
+  border : none;
+  background-color: #dddddd;
+  font-weight : bold;
+  font-size: 15pt;
+  text-align: center;
+  margin : 0px 10px;
+}
+
+.add-quantity-button:hover{
   background-color: #bbbbbb;
 }
 

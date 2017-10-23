@@ -12,25 +12,6 @@ $(document).ready(function() {
 
     addItemsToHtmlShopping();
 
-    /* OnClick des boutons de suppréssion d'un produit */
-    $(".remove-item-button").click(function(){
-      var indexToRemove;
-      indexToRemove = this.id.split("-")[1];
-      console.log(indexToRemove);
-      var indexToRemoveInArray;
-      var responseConfirm = confirm("Voulez vous supprimer ce produit du panier?");
-      if(responseConfirm == true){
-        console.log("OK");
-        $.each(lstShopProducts, function(index, value){
-          console.log("prod id : " + value.id + " & index : " + indexToRemove);
-          if(value.id === indexToRemove){
-            indexToRemoveInArray = index;
-          }
-        });
-        lstShopProducts.splice(indexToRemoveInArray, 1);
-        addItemsToHtmlShopping();
-      }
-    });
 
     /* Ajout des élements au panier dans le html */
     function addItemsToHtmlShopping(){
@@ -57,14 +38,14 @@ $(document).ready(function() {
                                     <td><button id=\"delete-"+value.id+"\" class=\"remove-item-button\">x</button></td>\
                                     <td><a href=\"product.html\">"+value.name+"</a></td>\
                                     <td>"+value.price+" $</td>\
-                                    <td><button class=\"cart-button\">-</button>"+value.quantity+"<button class=\"cart-button\">+</button></td>\
-                                    <td class=\"price\">"+value.price*value.quantity+" $</td>\
+                                    <td><button class=\"remove-quantity-button\">-</button>"+value.quantity+"<button class=\"add-quantity-button\">+</button></td>\
+                                    <td class=\"price\">"+(value.price*value.quantity).toFixed(2)+" $</td>\
                                   </tr>\"");
 
         });
 
         $("#table-shop").after ("</table>\
-                                <p class=\"total-cart\" id=\"total-amount\">Total : <b>"+totalPrice+" $</b></p>\
+                                <p class=\"total-cart\" id=\"total-amount\">Total : <b>"+totalPrice.toFixed(2)+" $</b></p>\
                                   <div class=\"final-buttons-cart\">\
                                   <div class=\"col2 cancel-button\">\
                                        <button  class=\"standardButton\">Vider le panier</button>\
@@ -73,6 +54,28 @@ $(document).ready(function() {
                                     <input type=\"submit\" value=\"Commander\" class=\"standardButton\">\
                                   </form>\
                                 </div>");
+
+        /* OnClick des boutons de suppréssion d'un produit */
+        $(".remove-item-button").click(function(){
+          console.log("CLICK");
+          var indexToRemove;
+          indexToRemove = this.id.split("-")[1];
+          console.log(indexToRemove);
+          var indexToRemoveInArray;
+          var responseConfirm = confirm("Voulez vous supprimer ce produit du panier?");
+          if(responseConfirm == true){
+            console.log("OK");
+            $.each(lstShopProducts, function(index, value){
+              console.log("prod id : " + value.id + " & index : " + indexToRemove);
+              if(value.id === indexToRemove){
+                indexToRemoveInArray = index;
+              }
+            });
+            lstShopProducts.splice(indexToRemoveInArray, 1);
+            addItemsToHtmlShopping(lstShopProducts);
+            console.log(lstShopProducts.length)
+          }
+        });
 
 
         }
@@ -83,7 +86,7 @@ $(document).ready(function() {
     function calculTotalPrice(){
       totalPrice = 0;
       $.each(lstShopProducts, function(index, value){
-        totalPrice += value.price*value.quantity;
+        totalPrice += (value.price*value.quantity);
       });
     };
 
