@@ -38,7 +38,7 @@ $(document).ready(function() {
                                     <td><button id=\"delete-"+value.id+"\" class=\"remove-item-button\">x</button></td>\
                                     <td><a href=\"product.html\">"+value.name+"</a></td>\
                                     <td>"+value.price+" $</td>\
-                                    <td><button class=\"remove-quantity-button\">-</button>"+value.quantity+"<button class=\"add-quantity-button\">+</button></td>\
+                                    <td><button id=\"reduce-"+value.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+value.quantity+"</div><button id=\"add-"+value.id+"\" class=\"add-quantity-button\">+</button></td>\
                                     <td class=\"price\">"+(value.price*value.quantity).toFixed(2)+" $</td>\
                                   </tr>\"");
 
@@ -57,14 +57,12 @@ $(document).ready(function() {
 
         /* OnClick des boutons de suppréssion d'un produit */
         $(".remove-item-button").click(function(){
-          console.log("CLICK");
           var indexToRemove;
           indexToRemove = this.id.split("-")[1];
           console.log(indexToRemove);
           var indexToRemoveInArray;
           var responseConfirm = confirm("Voulez vous supprimer ce produit du panier?");
           if(responseConfirm == true){
-            console.log("OK");
             $.each(lstShopProducts, function(index, value){
               console.log("prod id : " + value.id + " & index : " + indexToRemove);
               if(value.id === indexToRemove){
@@ -73,10 +71,40 @@ $(document).ready(function() {
             });
             lstShopProducts.splice(indexToRemoveInArray, 1);
             addItemsToHtmlShopping(lstShopProducts);
-            console.log(lstShopProducts.length)
           }
         });
 
+        /* Onclick des boutons de diminution de quantité */
+        $(".remove-quantity-button").click(function(){
+          var indexToReduce;
+          indexToReduce = this.id.split("-")[1];
+          $.each(lstShopProducts, function(index, value){
+            console.log("prod id : " + value.id + " & index : " + indexToReduce);
+            if(value.id === indexToReduce){
+              if(value.quantity === 1){
+                $("#"+this.id).prop('disabled', true);
+              }
+              else{
+                $("#"+this.id).prop('disabled', false);
+                value.quantity--;
+              }
+            }
+          });
+          addItemsToHtmlShopping(lstShopProducts);
+        });
+
+        /* Onclick des boutons d'augmentation' de quantité */
+        $(".add-quantity-button").click(function(){
+          var indexToIncrease;
+          indexToIncrease = this.id.split("-")[1];
+          $.each(lstShopProducts, function(index, value){
+            console.log("prod id : " + value.id + " & index : " + indexToIncrease);
+            if(value.id === indexToIncrease){
+              value.quantity++;
+            }
+          });
+          addItemsToHtmlShopping(lstShopProducts);
+        });
 
         }
 

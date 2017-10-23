@@ -470,6 +470,10 @@ tr > td:last-child, tr > th:last-child{
   background-color: #bbbbbb;
 }
 
+.quantity{
+  display : inline;
+}
+
 .tr-border > td, .tr-border > th{
   border-bottom : solid 1px;
 }
