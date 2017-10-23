@@ -22,8 +22,10 @@ $(document).ready(function() {
     //Rempli la page html avec les informations dans le fichier Json products.json
     $.getJSON( "./data/products.json", function( data ) {
         var isFound = false;
+        actualProductId = GetURLParameter("id");
         $.each( data, function( key, val ) {
             if(val.id == actualProductId){
+                actualProduct = val;
                 $('#product-name').html(val.name);
                 $('#product-image').attr('src', "./assets/img/" + val.image);
                 $('#product-desc').html(val.description);
@@ -42,9 +44,6 @@ $(document).ready(function() {
                     }
                 }
                 isFound = true;
-                if(isFound){
-                    actualProduct = val;
-                }
             }
         })
 
@@ -59,7 +58,7 @@ $(document).ready(function() {
 
     //Gestion du clic sur le bouton
     $('#add-to-cart-form button').click(function(e){
-        e.preventDefault();
+        e.preventDefault();     //Évite de recharger la page
         var alreadyOrdered = false;
         for(var i=0; i<lstShopProducts.length; i++){
             if(lstShopProducts[i].id == actualProductId){
@@ -72,10 +71,9 @@ $(document).ready(function() {
             lstShopProducts.push({id : actualProduct.id, name : actualProduct.name, price : actualProduct.price, quantity : $('.form-control').val()});
         }
 
-        alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
+        //alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
         console.log(lstShopProducts);
-        $('#dialog').slideUp( 300 ).delay( 1000 ).fadeIn( 400 );
-        $('#dialog').slideDown( 300 ).delay( 1000 ).fadeOut( 400 );
-
+        $('#dialog').slideUp( 300 ).delay( 0 ).fadeIn( 200 );
+        $('#dialog').slideDown( 300 ).delay( 5000 ).fadeOut( 1000 );
     });
 });
