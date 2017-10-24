@@ -32,14 +32,16 @@ $(document).ready(function() {
                                     <th>Prix</th>\
                                   </tr>\"");
 
-        $.each(lstShopProducts, function(index, value){
+        $.each(localStorage, function(index, value){
+          var product = JSON.parse(localStorage.getItem(index))
+          console.log("value : " + product.quantity);
 
           $("#table-shop").append("<tr>\
-                                    <td><button id=\"delete-"+value.id+"\" class=\"remove-item-button\">x</button></td>\
-                                    <td><a href=\"product.html\">"+value.name+"</a></td>\
-                                    <td>"+value.price+" $</td>\
-                                    <td><button id=\"reduce-"+value.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+value.quantity+"</div><button id=\"add-"+value.id+"\" class=\"add-quantity-button\">+</button></td>\
-                                    <td class=\"price\">"+(value.price*value.quantity).toFixed(2)+" $</td>\
+                                    <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
+                                    <td><a href=\"product.html\">"+product.name+"</a></td>\
+                                    <td>"+product.price+" $</td>\
+                                    <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+value.id+"\" class=\"add-quantity-button\">+</button></td>\
+                                    <td class=\"price\">"+(product.price*product.quantity).toFixed(2)+" $</td>\
                                   </tr>\"");
 
         });
@@ -63,13 +65,14 @@ $(document).ready(function() {
           var indexToRemoveInArray;
           var responseConfirm = confirm("Voulez vous supprimer ce produit du panier?");
           if(responseConfirm == true){
-            $.each(lstShopProducts, function(index, value){
+            $.each(localStorage, function(index, value){
               console.log("prod id : " + value.id + " & index : " + indexToRemove);
               if(value.id === indexToRemove){
                 indexToRemoveInArray = index;
               }
             });
             lstShopProducts.splice(indexToRemoveInArray, 1);
+            localStorage.removeItem(indexToRemove)
             addItemsToHtmlShopping(lstShopProducts);
           }
         });
