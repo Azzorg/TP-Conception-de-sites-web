@@ -1,12 +1,16 @@
 var nbProduit;
 
 jQuery(function(){
-    nbProduit = 2;
-    if(nbProduit == 0){
-        $('span.count').hide();
+    if(typeof localStorage!='undefined') {
+        if(localStorage.length == 0){
+            $('span.count').hide();
+        }
+        else{
+            $('span.count').show();
+            $('span.count').html(localStorage.length);
+        }
     }
-    else{
-        $('span.count').show();
-        $('span.count').html(nbProduit) = nbProduit;
+    else {
+        alert("localStorage n'est pas supporté");
     }
 })
