@@ -1,132 +1,123 @@
 
 $(document).ready(function() {
 
-    var lstShopProducts = [];
-    var totalPrice = 0;
-
-
-    lstShopProducts.push({id : "5", name : "Nikkon300", price : "200", quantity : "3"});
-    lstShopProducts.push({id : "8", name : "iMac 13", price : "500", quantity : "1"});
-    lstShopProducts.push({id : "11", name : "controlleur xbox", price : "29.99", quantity : "53"});
-
-
     addItemsToHtmlShopping();
-
 
     /* Ajout des élements au panier dans le html */
     function addItemsToHtmlShopping(){
-      calculTotalPrice();
-      if(lstShopProducts.length == 0){
-        $("#main-cart").empty();
-        $("#main-cart").append("<h1 id=\"shop-title\">Panier</h1><p id=\"emptyCart\">Aucun produit dans le panier.</p>");
+      
+      if(typeof localStorage!='undefined') {
+        /* Calcul du prix total du panier */ 
+        calculTotalPrice();
+
+        if(localStorage.length == 0){
+          $("#main-cart").empty();
+          $("#main-cart").append("<h1 id=\"shop-title\">Panier</h1><p id=\"emptyCart\">Aucun produit dans le panier.</p>");
+                      
+          //Cache le compte du panier
+          $('span.count').hide();
+        }
+        else{
+          $("#main-cart").empty();
+          $("#main-cart").append ("<h1 id=\"shop-title\">Panier</h1>\
+                                  <table id=\"table-shop\">\
+                                    <tr class=\"tr-border\">\
+                                      <th></th>\
+                                      <th>Produit</th>\
+                                      <th>Prix unitaire</th>\
+                                      <th>Quantité</th>\
+                                      <th>Prix</th>\
+                                    </tr>\"");
+
+          $.each(localStorage, function(index, value){
+
+            var product = JSON.parse(localStorage.getItem(index));
+            console.log("value : " + product.quantity);
+
+            $("#table-shop").append("<tr>\
+                                      <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
+                                      <td><a href=\"product.html\">"+product.name+"</a></td>\
+                                      <td>"+product.price+" $</td>\
+                                      <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+product.id+"\" class=\"add-quantity-button\">+</button></td>\
+                                      <td class=\"price\">"+(product.price*product.quantity).toFixed(2)+" $</td>\
+                                    </tr>\"");
+
+          });
+
+          $("#table-shop").after ("</table>\
+                                  <p class=\"total-cart\" id=\"total-amount\">Total : <b>"+totalPrice.toFixed(2)+" $</b></p>\
+                                    <div class=\"final-buttons-cart\">\
+                                    <div class=\"col2 cancel-button\">\
+                                        <button id=\"remove-all-items-button\" class=\"standardButton\">Vider le panier</button>\
+                                    </div>\
+                                    <form action=\"order.html\" class=\"col2 confirm-button\">\
+                                      <input type=\"submit\" value=\"Commander\" class=\"standardButton\">\
+                                    </form>\
+                                  </div>");
+
+          /* OnClick des boutons de suppression d'un produit */
+          $(".remove-item-button").click(function(){
+            var indexToRemove;
+            indexToRemove = this.id.split("-")[1];
+
+            var responseConfirm = confirm("Voulez vous supprimer ce produit du panier?");
+            if(responseConfirm == true){
+              localStorage.removeItem(indexToRemove);
+              addItemsToHtmlShopping();
+                        
+              //Changement du compte du panier
+              $('span.count').html(localStorage.length);  
+            }
+          });
+
+          /* Onclick des boutons de diminution de la quantité */
+          $(".remove-quantity-button").click(function(){
+            var indexToReduce;
+            indexToReduce = this.id.split("-")[1];
+            var productToReduce = JSON.parse(localStorage.getItem(indexToReduce));
+            if(productToReduce.quantity > 1){
+              $("#"+this.id).prop('disabled', false);
+              productToReduce.quantity --;
+              localStorage.setItem(productToReduce.id, JSON.stringify(productToReduce));  
+            }
+            else{
+              $("#"+this.id).prop('disabled', true);
+            }
+            addItemsToHtmlShopping();
+          });
+
+          /* Onclick des boutons d'augmentation de la quantité */
+          $(".add-quantity-button").click(function(){
+            var indexToIncrease;
+            indexToIncrease = this.id.split("-")[1];
+
+            var productToIncrease = JSON.parse(localStorage.getItem(indexToIncrease));
+            productToIncrease.quantity ++;
+            localStorage.setItem(productToIncrease.id, JSON.stringify(productToIncrease));  
+            addItemsToHtmlShopping();
+          });
+
+          /* OnClick du bouton de suppression du panier complet */
+          $("#remove-all-items-button").click(function(){
+            var responseConfirm = confirm("Voulez-vous supprimer tous les produits du panier ?");
+            if(responseConfirm == true){
+              localStorage.clear();
+              addItemsToHtmlShopping();
+            }
+          });
+        }
       }
       else{
-        $("#main-cart").empty();
-        $("#main-cart").append ("<h1 id=\"shop-title\">Panier</h1>\
-                                <table id=\"table-shop\">\
-                                  <tr class=\"tr-border\">\
-                                    <th></th>\
-                                    <th>Produit</th>\
-                                    <th>Prix unitaire</th>\
-                                    <th>Quantité</th>\
-                                    <th>Prix</th>\
-                                  </tr>\"");
-
-        $.each(localStorage, function(index, value){
-          var product = JSON.parse(localStorage.getItem(index))
-          console.log("value : " + product.quantity);
-
-          $("#table-shop").append("<tr>\
-                                    <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
-                                    <td><a href=\"product.html\">"+product.name+"</a></td>\
-                                    <td>"+product.price+" $</td>\
-                                    <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+value.id+"\" class=\"add-quantity-button\">+</button></td>\
-                                    <td class=\"price\">"+(product.price*product.quantity).toFixed(2)+" $</td>\
-                                  </tr>\"");
-
-        });
-
-        $("#table-shop").after ("</table>\
-                                <p class=\"total-cart\" id=\"total-amount\">Total : <b>"+totalPrice.toFixed(2)+" $</b></p>\
-                                  <div class=\"final-buttons-cart\">\
-                                  <div class=\"col2 cancel-button\">\
-                                       <button id=\"remove-all-items-button\" class=\"standardButton\">Vider le panier</button>\
-                                  </div>\
-                                  <form action=\"order.html\" class=\"col2 confirm-button\">\
-                                    <input type=\"submit\" value=\"Commander\" class=\"standardButton\">\
-                                  </form>\
-                                </div>");
-
-        /* OnClick des boutons de suppréssion d'un produit */
-        $(".remove-item-button").click(function(){
-          var indexToRemove;
-          indexToRemove = this.id.split("-")[1];
-          console.log(indexToRemove);
-          var indexToRemoveInArray;
-          var responseConfirm = confirm("Voulez vous supprimer ce produit du panier?");
-          if(responseConfirm == true){
-            $.each(localStorage, function(index, value){
-              console.log("prod id : " + value.id + " & index : " + indexToRemove);
-              if(value.id === indexToRemove){
-                indexToRemoveInArray = index;
-              }
-            });
-            lstShopProducts.splice(indexToRemoveInArray, 1);
-            localStorage.removeItem(indexToRemove)
-            addItemsToHtmlShopping(lstShopProducts);
-          }
-        });
-
-        /* Onclick des boutons de diminution de quantité */
-        $(".remove-quantity-button").click(function(){
-          var indexToReduce;
-          indexToReduce = this.id.split("-")[1];
-          $.each(lstShopProducts, function(index, value){
-            console.log("prod id : " + value.id + " & index : " + indexToReduce);
-            if(value.id === indexToReduce){
-              if(value.quantity === 1){
-                $("#"+this.id).prop('disabled', true);
-              }
-              else{
-                $("#"+this.id).prop('disabled', false);
-                value.quantity--;
-              }
-            }
-          });
-          addItemsToHtmlShopping(lstShopProducts);
-        });
-
-        /* Onclick des boutons d'augmentation' de quantité */
-        $(".add-quantity-button").click(function(){
-          var indexToIncrease;
-          indexToIncrease = this.id.split("-")[1];
-          $.each(lstShopProducts, function(index, value){
-            console.log("prod id : " + value.id + " & index : " + indexToIncrease);
-            if(value.id === indexToIncrease){
-              value.quantity++;
-            }
-          });
-          addItemsToHtmlShopping(lstShopProducts);
-        });
-
-        /* OnClick du bouton de suppréssion du panier complet */
-        $("#remove-all-items-button").click(function(){
-          var responseConfirm = confirm("Voulez-vous supprimer tous les produits du panier ?");
-          if(responseConfirm == true){
-            lstShopProducts = [];
-            addItemsToHtmlShopping(lstShopProducts);
-          }
-        });
-
-        }
-
+        alert("localStorage n'est pas supporté");
+      }
     };
 
     /* Calcule le prix total du panier */
     function calculTotalPrice(){
       totalPrice = 0;
-      $.each(lstShopProducts, function(index, value){
-        totalPrice += (value.price*value.quantity);
+      $.each(localStorage, function(index, value){
+        var product = JSON.parse(localStorage.getItem(index));
+        totalPrice += (product.price*product.quantity);
       });
     };
 
