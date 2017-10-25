@@ -26,15 +26,13 @@ $(document).ready(function() {
                     for(var i=0; i< val.features.length; i++){
                         $('#product-features').append('<li>' + val.features[i] + '</li>');
                     }
-                    //var price = $.number(val.price, 2, ',');
 
                     $('#product-price').html(val.price + " $");
 
                     //Rempli la quantité si ce produit est déjà dans le panier
-                    for(var i=0; i < lstShopProducts.length; i++){
-                        if(lstShopProducts[i].id == actualProductId){
-                            $('.form-control').attr('value', lstShopProducts[i].quantity);
-                        }
+                    var productAct = JSON.parse(localStorage.getItem(actualProductId))
+                    if(productAct != null){
+                        $('.form-control').attr('value', productAct.quantity);
                     }
                     isFound = true;
                 }
@@ -52,18 +50,24 @@ $(document).ready(function() {
         //Gestion du clic sur le bouton
         $('#add-to-cart-form button').click(function(e){
             //Évite de recharger la page
-            e.preventDefault();     
-
-            //Stockage dans le local storage
-            localStorage.setItem(actualProduct.id, JSON.stringify({id : actualProduct.id, name : actualProduct.name, price : actualProduct.price, quantity : $('.form-control').val()}));
+            e.preventDefault();
             
-            //Changement du compte du panier
-            $('span.count').html(localStorage.length);
+            if($('.form-control').val() > 0){
+                //Stockage dans le local storage
+                localStorage.setItem(actualProduct.id, JSON.stringify({id : actualProduct.id, name : actualProduct.name, price : actualProduct.price, quantity : $('.form-control').val()}));
+                
+                //Changement du compte du panier
+                $('span.count').show();
+                $('span.count').html(localStorage.length);
 
-            //alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
-            //console.log(lstShopProducts);
-            $('#dialog').slideUp( 300 ).delay( 0 ).fadeIn( 200 );
-            $('#dialog').slideDown( 300 ).delay( 5000 ).fadeOut( 1000 );
+                //alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
+                //console.log(lstShopProducts);
+                $('#dialog').slideUp( 300 ).delay( 0 ).fadeIn( 200 );
+                $('#dialog').slideDown( 300 ).delay( 5000 ).fadeOut( 1000 );
+            }
+            else{
+                alert("Attention la quantité doit être supérieure à 0");
+            }            
         });
     }
     else{
