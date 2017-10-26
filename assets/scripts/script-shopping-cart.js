@@ -32,7 +32,6 @@ $(document).ready(function() {
           $.each(localStorage, function(index, value){
 
             var product = JSON.parse(localStorage.getItem(index));
-            console.log("value : " + product.quantity);
 
             $("#table-shop").append("<tr>\
                                       <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
