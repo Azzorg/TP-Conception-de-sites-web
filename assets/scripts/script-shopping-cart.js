@@ -100,7 +100,10 @@ $(document).ready(function() {
           $("#remove-all-items-button").click(function(){
             var responseConfirm = confirm("Voulez-vous supprimer tous les produits du panier ?");
             if(responseConfirm == true){
+              //Id commandes est sauvegardé le localStorage à l'index -1
+              var numCommande = JSON.parse(localStorage.getItem(-1));
               localStorage.clear();
+              localStorage.setItem(-1, JSON.stringify(numCommande));
               addItemsToHtmlShopping();
             }
           });
