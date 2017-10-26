@@ -2,12 +2,19 @@ var nbProduit;
 
 jQuery(function(){
     if(typeof localStorage!='undefined') {
-        if(localStorage.length == 0){
+        var count = 0;
+        if(localStorage.getItem(-1) != null){
+            count++;
+        }
+        if(localStorage.getItem(-2) != null){
+            count++;
+        }
+        if(localStorage.length - count === 0){
             $('span.count').hide();
         }
         else{
             $('span.count').show();
-            $('span.count').html(localStorage.length);
+            $('span.count').html(localStorage.length - count);
         }
     }
     else {
