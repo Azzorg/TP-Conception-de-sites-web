@@ -118,7 +118,7 @@ $(document).ready(function() {
           <a href=\"product.html?id="+val.id +"\">\
             <h1>"+val.name+"</h1>\
             <img src=\"assets/img/"+val.image+"\" alt=\"image produit\">\
-            <p>"+val.price+"</p>\
+            <p>"+val.price+" $</p>\
           </a>\
         </section>"
       );
