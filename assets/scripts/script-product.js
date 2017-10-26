@@ -57,8 +57,15 @@ $(document).ready(function() {
                 localStorage.setItem(actualProduct.id, JSON.stringify({id : actualProduct.id, name : actualProduct.name, price : actualProduct.price, quantity : $('.form-control').val()}));
                 
                 //Changement du compte du panier
+                var count = 0;
+                if(localStorage.getItem(-1) != null){
+                    count++;
+                }
+                if(localStorage.getItem(-2) != null){
+                    count++;
+                }
                 $('span.count').show();
-                $('span.count').html(localStorage.length);
+                $('span.count').html(localStorage.length - count);
 
                 //alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
                 //console.log(lstShopProducts);
