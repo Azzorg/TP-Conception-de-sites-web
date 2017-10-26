@@ -31,15 +31,19 @@ $(document).ready(function() {
 
           $.each(localStorage, function(index, value){
 
-            var product = JSON.parse(localStorage.getItem(index));
+            if((index != -1) && (index != -2)){
+              var product = JSON.parse(localStorage.getItem(index));
+              
+                          $("#table-shop").append("<tr>\
+                                                    <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
+                                                    <td><a href=\"product.html\">"+product.name+"</a></td>\
+                                                    <td>"+product.price+" $</td>\
+                                                    <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+product.id+"\" class=\"add-quantity-button\">+</button></td>\
+                                                    <td class=\"price\">"+(product.price*product.quantity).toFixed(2)+" $</td>\
+                                                  </tr>\"");
+            }
 
-            $("#table-shop").append("<tr>\
-                                      <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
-                                      <td><a href=\"product.html\">"+product.name+"</a></td>\
-                                      <td>"+product.price+" $</td>\
-                                      <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+product.id+"\" class=\"add-quantity-button\">+</button></td>\
-                                      <td class=\"price\">"+(product.price*product.quantity).toFixed(2)+" $</td>\
-                                    </tr>\"");
+
 
           });
 
@@ -104,6 +108,7 @@ $(document).ready(function() {
               var numCommande = JSON.parse(localStorage.getItem(-1));
               localStorage.clear();
               localStorage.setItem(-1, JSON.stringify(numCommande));
+              $('span.count').hide();
               addItemsToHtmlShopping();
             }
           });
@@ -118,8 +123,10 @@ $(document).ready(function() {
     function calculTotalPrice(){
       totalPrice = 0;
       $.each(localStorage, function(index, value){
-        var product = JSON.parse(localStorage.getItem(index));
-        totalPrice += (product.price*product.quantity);
+        if((index != -1) && (index != -2)){
+          var product = JSON.parse(localStorage.getItem(index));
+          totalPrice += (product.price*product.quantity);
+        }
       });
     };
 
