@@ -45,13 +45,13 @@ $(document).ready(function() {
               let price = ((product.price).toString()).split(".")[0].toString() + "," + ((product.price).toString()).split(".")[1].toString();
               let priceTotalProduct = (((product.price*product.quantity).toFixed(2)).toString()).split(".")[0].toString() + "," + (((product.price*product.quantity).toFixed(2)).toString()).split(".")[1].toString();
 
-                          $("#table-shop").append("<tr>\
-                                                    <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
-                                                    <td><a href=\"product.html\">"+product.name+"</a></td>\
-                                                    <td>"+price+"$</td>\
-                                                    <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+product.id+"\" class=\"add-quantity-button\">+</button></td>\
-                                                    <td class=\"price\">"+priceTotalProduct+"$</td>\
-                                                  </tr>");
+              $("#table-shop").append("<tr>\
+                                        <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
+                                        <td><a href=\"product.html?id="+product.id+"\">"+product.name+"</a></td>\
+                                        <td>"+price+"$</td>\
+                                        <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+product.id+"\" class=\"add-quantity-button\">+</button></td>\
+                                        <td class=\"price\">"+priceTotalProduct+"$</td>\
+                                      </tr>");
             }
 
 
