@@ -2,3 +2,4 @@
 
 #Ignore folders
 node_modules/
+tests/
