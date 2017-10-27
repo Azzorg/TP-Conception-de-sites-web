@@ -82,8 +82,17 @@ $(document).ready(function() {
               localStorage.removeItem(indexToRemove);
               addItemsToHtmlShopping();
 
+              //To calculate the quantity
+              var totalQuantity = 0;
+              $.each(localStorage, function(index, value){
+                  if((index != -1) && (index != -2)){
+                      let product = JSON.parse(localStorage.getItem(index));
+                      totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
+                  }
+              });
+
               //Changement du compte du panier
-              $('span.count').html(localStorage.length);
+              $('span.count').html(totalQuantity);
             }
           });
 
@@ -103,6 +112,18 @@ $(document).ready(function() {
             else{
               $("#"+this.id).removeAttr('disabled');
             }
+
+            //To calculate the quantity
+            var totalQuantity = 0;
+            $.each(localStorage, function(index, value){
+                if((index != -1) && (index != -2)){
+                    let product = JSON.parse(localStorage.getItem(index));
+                    totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
+                }
+            });
+
+            //Changement du compte du panier
+            $('span.count').html(totalQuantity);
           });
 
           /* Onclick des boutons d'augmentation de la quantité */
@@ -114,6 +135,18 @@ $(document).ready(function() {
             productToIncrease.quantity ++;
             localStorage.setItem(productToIncrease.id, JSON.stringify(productToIncrease));
             addItemsToHtmlShopping();
+
+            //To calculate the quantity
+            var totalQuantity = 0;
+            $.each(localStorage, function(index, value){
+                if((index != -1) && (index != -2)){
+                    let product = JSON.parse(localStorage.getItem(index));
+                    totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
+                }
+            });
+
+            //Changement du compte du panier
+            $('span.count').html(totalQuantity);
           });
 
           /* OnClick du bouton de suppression du panier complet */
