@@ -48,13 +48,15 @@ $(document).ready(function() {
               $("#table-shop").append("<tr>\
                                         <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
                                         <td><a href=\"product.html?id="+product.id+"\">"+product.name+"</a></td>\
-                                        <td>"+price+"$</td>\
+                                        <td >"+price+"$</td>\
                                         <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+product.id+"\" class=\"add-quantity-button\">+</button></td>\
                                         <td class=\"price\">"+priceTotalProduct+"$</td>\
                                       </tr>");
+              if(product.quantity == 1){
+                $("#reduce-" + product.id).attr('disabled','disabled');
+              }
+                                                                
             }
-
-
 
           });
 
@@ -91,14 +93,16 @@ $(document).ready(function() {
             indexToReduce = this.id.split("-")[1];
             var productToReduce = JSON.parse(localStorage.getItem(indexToReduce));
             if(productToReduce.quantity > 1){
-              $("#"+this.id).prop('disabled', false);
               productToReduce.quantity --;
               localStorage.setItem(productToReduce.id, JSON.stringify(productToReduce));
             }
-            else{
-              $("#"+this.id).prop('disabled', true);
-            }
             addItemsToHtmlShopping();
+            if(productToReduce.quantity === 1){
+              $("#"+this.id).attr('disabled','disabled');
+            }
+            else{
+              $("#"+this.id).removeAttr('disabled');
+            }
           });
 
           /* Onclick des boutons d'augmentation de la quantité */
@@ -141,6 +145,7 @@ $(document).ready(function() {
         }
       });
     };
+
 
 
 });
