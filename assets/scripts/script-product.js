@@ -70,8 +70,8 @@ $(document).ready(function() {
 
                 //alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
                 //console.log(lstShopProducts);
-                $('#dialog').slideUp( 300 ).delay( 0 ).fadeIn( 200 );
-                $('#dialog').slideDown( 300 ).delay( 5000 ).fadeOut( 1000 );
+                $('#dialog').slideUp( 300 ).delay( 0 ).fadeIn( 0 );
+                $('#dialog').slideDown( 300 ).delay( 5000 ).fadeOut( 0 );
             }
             else{
                 alert("Attention la quantité doit être supérieure à 0");
