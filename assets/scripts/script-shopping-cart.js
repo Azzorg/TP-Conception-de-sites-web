@@ -11,7 +11,15 @@ $(document).ready(function() {
         calculTotalPrice();
         var totalPriceStr = (((totalPrice).toFixed(2)).toString()).split(".")[0].toString() + "," + (((totalPrice).toFixed(2)).toString()).split(".")[1].toString();
 
-        if(localStorage.length == 0){
+        var count = 0;
+        if(localStorage.getItem(-1) != null){
+            count++;
+        }
+        if(localStorage.getItem(-2) != null){
+            count++;
+        }
+
+        if(localStorage.length - count == 0){
           $("#main-cart").empty();
           $("#main-cart").append("<h1 id=\"shop-title\">Panier</h1><p id=\"emptyCart\">Aucun produit dans le panier.</p>");
 

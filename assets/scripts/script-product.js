@@ -49,7 +49,7 @@ $(document).ready(function() {
         });
 
         //Gestion du clic sur le bouton
-        $('#add-to-cart-form button').click(function(e){
+        $('#add-to-cart-form').submit(function(e){
             //Évite de recharger la page
             e.preventDefault();
 
