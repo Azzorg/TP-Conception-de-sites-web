@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
 
+  var lstProductsSorted = new Array();
+
     addItemsToHtmlShopping();
 
     /* Ajout des élements au panier dans le html */
@@ -38,16 +40,32 @@ $(document).ready(function() {
                                       <th>Prix</th>\
                                     </tr>");
 
-          $.each(localStorage, function(index, value){
+          lstProductsSorted = [];
 
-            if((index != -1) && (index != -2)){
-              var product = JSON.parse(localStorage.getItem(index));
+          $.each(localStorage, function(index, value){
+            if(index >= 0){
+              var prod = JSON.parse(localStorage.getItem(index));
+              lstProductsSorted.push(prod);
+            }
+          });
+
+            /* Tri de la liste des items du panier */
+            function sortJson(a,b){
+                let nameLowerCaseA = a.name.toLowerCase();
+                let nameLowerCaseB = b.name.toLowerCase();
+                return nameLowerCaseA > nameLowerCaseB? 1 : -1;
+            }
+            lstProductsSorted.sort(sortJson);
+
+            /* Liste triée ajoutée au html */
+            $.each(lstProductsSorted, function( key, product ){
+
               let price = ((product.price).toString()).split(".")[0].toString() + "," + ((product.price).toString()).split(".")[1].toString();
               let priceTotalProduct = (((product.price*product.quantity).toFixed(2)).toString()).split(".")[0].toString() + "," + (((product.price*product.quantity).toFixed(2)).toString()).split(".")[1].toString();
 
               $("#table-shop").append("<tr>\
                                         <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
-                                        <td><a href=\"product.html?id="+product.id+"\">"+product.name+"</a></td>\
+                                        <td><a href=\"product.html?id="+product.id+"\">"+(product.name).toString()+"</a></td>\
                                         <td >"+price+"$</td>\
                                         <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+product.id+"\" class=\"add-quantity-button\">+</button></td>\
                                         <td class=\"price\">"+priceTotalProduct+"$</td>\
@@ -55,11 +73,8 @@ $(document).ready(function() {
               if(product.quantity == 1){
                 $("#reduce-" + product.id).attr('disabled','disabled');
               }
-                                                                
-            }
 
-          });
-
+            });
 
           $("#table-shop").after ("</table>\
                                   <p class=\"total-cart\" id=\"total-amount\">Total : <b>"+totalPriceStr+"$</b></p>\
@@ -85,14 +100,13 @@ $(document).ready(function() {
               //To calculate the quantity
               var totalQuantity = 0;
               $.each(localStorage, function(index, value){
-                  if((index != -1) && (index != -2)){
+                  if(index >= 0){
                       let product = JSON.parse(localStorage.getItem(index));
                       totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
                   }
               });
 
-              //Changement du compte du panier
-              $('span.count').html(totalQuantity);
+              $('span.count').html(calculTotalQuantity);
             }
           });
 
@@ -113,17 +127,8 @@ $(document).ready(function() {
               $("#"+this.id).removeAttr('disabled');
             }
 
-            //To calculate the quantity
-            var totalQuantity = 0;
-            $.each(localStorage, function(index, value){
-                if((index != -1) && (index != -2)){
-                    let product = JSON.parse(localStorage.getItem(index));
-                    totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
-                }
-            });
-
             //Changement du compte du panier
-            $('span.count').html(totalQuantity);
+            $('span.count').html(calculTotalQuantity);
           });
 
           /* Onclick des boutons d'augmentation de la quantité */
@@ -146,7 +151,7 @@ $(document).ready(function() {
             });
 
             //Changement du compte du panier
-            $('span.count').html(totalQuantity);
+            $('span.count').html(calculTotalQuantity);
           });
 
           /* OnClick du bouton de suppression du panier complet */
@@ -177,6 +182,17 @@ $(document).ready(function() {
           totalPrice += (product.price*product.quantity);
         }
       });
+    };
+
+    function calculTotalQuantity(){
+      var totalQuantity = 0;
+      $.each(localStorage, function(index, value){
+          if((index != -1) && (index != -2)){
+              let product = JSON.parse(localStorage.getItem(index));
+              totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
+          }
+      });
+      return totalQuantity;
     };
 
 
