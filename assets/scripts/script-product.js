@@ -57,16 +57,16 @@ $(document).ready(function() {
                 //Stockage dans le local storage
                 localStorage.setItem(actualProduct.id, JSON.stringify({id : actualProduct.id, name : actualProduct.name, price : actualProduct.price, quantity : $('.form-control').val()}));
 
-                //Changement du compte du panier
-                var count = 0;
-                if(localStorage.getItem(-1) != null){
-                    count++;
-                }
-                if(localStorage.getItem(-2) != null){
-                    count++;
-                }
+                //To calculate the quantity
+                var totalQuantity = 0;
+                $.each(localStorage, function(index, value){
+                    if((index != -1) && (index != -2)){
+                        let product = JSON.parse(localStorage.getItem(index));
+                        totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
+                    }
+                });
                 $('span.count').show();
-                $('span.count').html(localStorage.length - count);
+                $('span.count').html(totalQuantity);
 
                 //alert('Added to order : \n' + actualProduct.name + '\n With the quantity : ' + $('.form-control').val());
                 //console.log(lstShopProducts);
