@@ -62,6 +62,7 @@ $(document).ready(function() {
                 $.each(localStorage, function(index, value){
                     if((index != -1) && (index != -2)){
                         let product = JSON.parse(localStorage.getItem(index));
+                        console.log("actual product : " + product.name);
                         totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
                     }
                 });
