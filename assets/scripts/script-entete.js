@@ -18,8 +18,18 @@ $(document).ready(function() {
                 $('span.count').hide();
             }
             else{
+
+                //To calculate the quantity
+                var totalQuantity = 0;
+                $.each(localStorage, function(index, value){
+                    if((index != -1) && (index != -2)){
+                        let product = JSON.parse(localStorage.getItem(index));
+                        totalQuantity = parseInt(totalQuantity) + parseInt(product.quantity);
+                    }
+                });
+                
                 $('span.count').show();
-                $('span.count').html(localStorage.length - count);
+                $('span.count').html(totalQuantity);
             }
         }
         else {
