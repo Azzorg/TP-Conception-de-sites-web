@@ -27,21 +27,17 @@ $(document).ready(function() {
       },
     },
     messages : {
-      firstname : {
-        required : "test",
-        firstname : "Your name has to be in that format"
-      },
     },
     submitHandler: function() {
       console.log("onClickValidate");
       var nbCommande = JSON.parse(localStorage.getItem(-1));
-  
+
       localStorage.clear();
-  
+
       console.log("firstname value : " + $("#first-name").val());
       //Sauvegarde du nom et du prénom de l'utilisateur en localStorage
       localStorage.setItem(-2, JSON.stringify({firstname : $("#first-name").val(), lastname : $("#last-name").val()}));
-  
+
       //Sauvegarde du numéro de commande dans le localStorage
       if(nbCommande != null){
         nbCommande ++;
@@ -51,17 +47,17 @@ $(document).ready(function() {
         nbCommande = 1
         localStorage.setItem(-1, JSON.stringify(nbCommande));
       }
-  
+
       console.log("nbCommande : " + nbCommande);
-      
+
       $("#order-form").ajaxSubmit();
     }
   });
 
   $.validator.addMethod("creditcardexpiry", function(value, element) {
     // allow any non-whitespace characters as the host part
-    return this.optional( element ) || /^(0[1-9]|1[012])\/([0-9][0-9])/.test( value );
-    }, 'La date d’expiration de votre carte de crédit est invalide.');
+    return this.optional( element ) || /^(0[1-9]|1[0-2])\/\d{2}$/.test( value );
+  }, "La date d\'expiration de votre carte de crédit est invalide.");
 
   validator.form();
 });

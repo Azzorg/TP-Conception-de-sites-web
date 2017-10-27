@@ -5,15 +5,16 @@ $(document).ready(function() {
 
     /* Ajout des élements au panier dans le html */
     function addItemsToHtmlShopping(){
-      
+
       if(typeof localStorage!='undefined') {
-        /* Calcul du prix total du panier */ 
+        /* Calcul du prix total du panier */
         calculTotalPrice();
+        var totalPriceStr = (((totalPrice).toFixed(2)).toString()).split(".")[0].toString() + "," + (((totalPrice).toFixed(2)).toString()).split(".")[1].toString();
 
         if(localStorage.length == 0){
           $("#main-cart").empty();
           $("#main-cart").append("<h1 id=\"shop-title\">Panier</h1><p id=\"emptyCart\">Aucun produit dans le panier.</p>");
-                      
+
           //Cache le compte du panier
           $('span.count').hide();
         }
@@ -27,31 +28,34 @@ $(document).ready(function() {
                                       <th>Prix unitaire</th>\
                                       <th>Quantité</th>\
                                       <th>Prix</th>\
-                                    </tr>\"");
+                                    </tr>");
 
           $.each(localStorage, function(index, value){
 
             if((index != -1) && (index != -2)){
               var product = JSON.parse(localStorage.getItem(index));
-              
+              let price = ((product.price).toString()).split(".")[0].toString() + "," + ((product.price).toString()).split(".")[1].toString();
+              let priceTotalProduct = (((product.price*product.quantity).toFixed(2)).toString()).split(".")[0].toString() + "," + (((product.price*product.quantity).toFixed(2)).toString()).split(".")[1].toString();
+
                           $("#table-shop").append("<tr>\
                                                     <td><button id=\"delete-"+product.id+"\" class=\"remove-item-button\">x</button></td>\
                                                     <td><a href=\"product.html\">"+product.name+"</a></td>\
-                                                    <td>"+product.price+" $</td>\
+                                                    <td>"+price+"$</td>\
                                                     <td><button id=\"reduce-"+product.id+"\" class=\"remove-quantity-button\">-</button><div class=\"quantity\">"+product.quantity+"</div><button id=\"add-"+product.id+"\" class=\"add-quantity-button\">+</button></td>\
-                                                    <td class=\"price\">"+(product.price*product.quantity).toFixed(2)+" $</td>\
-                                                  </tr>\"");
+                                                    <td class=\"price\">"+priceTotalProduct+"$</td>\
+                                                  </tr>");
             }
 
 
 
           });
 
+
           $("#table-shop").after ("</table>\
-                                  <p class=\"total-cart\" id=\"total-amount\">Total : <b>"+totalPrice.toFixed(2)+" $</b></p>\
+                                  <p class=\"total-cart\" id=\"total-amount\">Total : <b>"+totalPriceStr+"$</b></p>\
                                     <div class=\"final-buttons-cart\">\
                                     <div class=\"col2 cancel-button\">\
-                                        <button id=\"remove-all-items-button\" class=\"standardButton\">Vider le panier</button>\
+                                    <button id=\"remove-all-items-button\" class=\"standardButton\">Vider le panier</button>\
                                     </div>\
                                     <form action=\"order.html\" class=\"col2 confirm-button\">\
                                       <input type=\"submit\" value=\"Commander\" class=\"standardButton\">\
@@ -67,9 +71,9 @@ $(document).ready(function() {
             if(responseConfirm == true){
               localStorage.removeItem(indexToRemove);
               addItemsToHtmlShopping();
-                        
+
               //Changement du compte du panier
-              $('span.count').html(localStorage.length);  
+              $('span.count').html(localStorage.length);
             }
           });
 
@@ -81,7 +85,7 @@ $(document).ready(function() {
             if(productToReduce.quantity > 1){
               $("#"+this.id).prop('disabled', false);
               productToReduce.quantity --;
-              localStorage.setItem(productToReduce.id, JSON.stringify(productToReduce));  
+              localStorage.setItem(productToReduce.id, JSON.stringify(productToReduce));
             }
             else{
               $("#"+this.id).prop('disabled', true);
@@ -96,7 +100,7 @@ $(document).ready(function() {
 
             var productToIncrease = JSON.parse(localStorage.getItem(indexToIncrease));
             productToIncrease.quantity ++;
-            localStorage.setItem(productToIncrease.id, JSON.stringify(productToIncrease));  
+            localStorage.setItem(productToIncrease.id, JSON.stringify(productToIncrease));
             addItemsToHtmlShopping();
           });
 

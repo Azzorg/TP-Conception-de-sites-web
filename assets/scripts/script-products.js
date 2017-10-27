@@ -111,6 +111,7 @@ $(document).ready(function() {
     $( "#products-list" ).empty();
     $.each( selectedItems, function( key, val ) {
       console.log(val);
+      let price = ((val.price).toString()).split(".")[0].toString() + "," + ((val.price).toString()).split(".")[1].toString();
 
       //Insere le produit dans la liste
       $( "#products-list" ).append(
@@ -118,7 +119,7 @@ $(document).ready(function() {
           <a href=\"product.html?id="+val.id +"\">\
             <h1>"+val.name+"</h1>\
             <img src=\"assets/img/"+val.image+"\" alt=\"image produit\">\
-            <p>"+val.price+" $</p>\
+            <p>"+price+"$</p>\
           </a>\
         </section>"
       );

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="3">
+
+  <testsuite name="2-product"
+    errors="0" failures="1" hostname="" id="" package="2-product" skipped="0"
+    tests="3" time="7.087" timestamp="Fri, 27 Oct 2017 03:52:32 GMT">
+  
+    <testcase name="Page d'un produit" classname="2-product" time="6.035" assertions="5">
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Produit invalide" classname="2-product" time="0.3000" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Ajout de produits dans le panier" classname="2-product" time="0.7520" assertions="4">
+
+    
+
+    
+
+      <failure message="Le nombre de produits dans le panier doit pas être visible.">    at validateShoppingCartQuantity (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\2-product.js:22:19)
+    at Object.Ajout de produits dans le panier (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\2-product.js:108:5)</failure>
+
+    
+    </testcase>
+  
+
+  
+    <system-err>
+      ERROR: Unable to locate element: &quot;#total-amount&quot; using: css selector
+    at F.command (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\api\assertions\containsText.js:46:21)
+    at F.module.exports.BaseAssertion._scheduleAssertion (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:87:17)
+    at F.module.exports.BaseAssertion._executeCommand (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:82:17)
+    at AssertionInstance.commandFn [as _commandFn] (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:180:21)
+    at AsyncTree.runCommand (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:154:30)
+    at AsyncTree.runChildNode (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:114:8)
+    at AsyncTree.walkDown (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:80:10)
+    at AsyncTree.walkUp (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:97:8)
+    at AsyncTree.walkDown (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:90:12)
+    at AsyncTree.traverse (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:73:8)
+ERROR: Unable to locate element: &quot;.remove-item-button&quot; using: css selector
+    at pressRemoveItemButton (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:175:21)
+    at Object.Suppression d'un item dans le panier (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:180:5)
+    at Module.call (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\module.js:62:34)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\testcase.js:70:29
+    at _fulfilled (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:834:54)
+    at self.promiseDispatch.done (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:863:30)
+    at Promise.promise.promiseDispatch (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:796:13)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:556:49
+    at runSingle (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:137:13)
+    at flush (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:125:13)
+ERROR: Unable to locate element: &quot;.remove-item-button&quot; using: css selector
+    at pressRemoveItemButton (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:175:21)
+    at Object.Suppression d'un item dans le panier (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:189:5)
+    at Module.call (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\module.js:62:34)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\testcase.js:70:29
+    at _fulfilled (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:834:54)
+    at self.promiseDispatch.done (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:863:30)
+    at Promise.promise.promiseDispatch (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:796:13)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:556:49
+    at runSingle (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:137:13)
+    at flush (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:125:13)
+ERROR: Unable to locate element: &quot;#total-amount&quot; using: css selector
+    at F.command (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\api\assertions\containsText.js:46:21)
+    at F.module.exports.BaseAssertion._scheduleAssertion (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:87:17)
+    at F.module.exports.BaseAssertion._executeCommand (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:82:17)
+    at AssertionInstance.commandFn [as _commandFn] (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:180:21)
+    at AsyncTree.runCommand (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:154:30)
+    at AsyncTree.runChildNode (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:114:8)
+    at AsyncTree.walkDown (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:80:10)
+    at AsyncTree.walkUp (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:97:8)
+    at AsyncTree.walkDown (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:90:12)
+    at AsyncTree.traverse (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:73:8)
+ERROR: Unable to locate element: &quot;.add-quantity-button&quot; using: css selector
+    at Object.Augmentation de la quantite associee a un item dans le panier (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:200:12)
+    at Module.call (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\module.js:62:34)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\testcase.js:70:29
+    at _fulfilled (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:834:54)
+    at self.promiseDispatch.done (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:863:30)
+    at Promise.promise.promiseDispatch (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:796:13)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:556:49
+    at runSingle (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:137:13)
+    at flush (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:125:13)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+ERROR: Unable to locate element: &quot;#total-amount&quot; using: css selector
+    at F.command (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\api\assertions\containsText.js:46:21)
+    at F.module.exports.BaseAssertion._scheduleAssertion (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:87:17)
+    at F.module.exports.BaseAssertion._executeCommand (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:82:17)
+    at AssertionInstance.commandFn [as _commandFn] (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:180:21)
+    at AsyncTree.runCommand (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:154:30)
+    at AsyncTree.runChildNode (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:114:8)
+    at AsyncTree.walkDown (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:80:10)
+    at AsyncTree.walkUp (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:97:8)
+    at AsyncTree.walkDown (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:90:12)
+    at AsyncTree.traverse (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:73:8)
+ERROR: Unable to locate element: &quot;.remove-quantity-button&quot; using: css selector
+    at Object.Diminution de la quantite associee a un item dans le panier (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:209:12)
+    at Module.call (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\module.js:62:34)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\testcase.js:70:29
+    at _fulfilled (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:834:54)
+    at self.promiseDispatch.done (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:863:30)
+    at Promise.promise.promiseDispatch (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:796:13)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:556:49
+    at runSingle (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:137:13)
+    at flush (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:125:13)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+ERROR: Unable to locate element: &quot;#total-amount&quot; using: css selector
+    at F.command (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\api\assertions\containsText.js:46:21)
+    at F.module.exports.BaseAssertion._scheduleAssertion (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:87:17)
+    at F.module.exports.BaseAssertion._executeCommand (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:82:17)
+    at AssertionInstance.commandFn [as _commandFn] (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\assertion.js:180:21)
+    at AsyncTree.runCommand (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:154:30)
+    at AsyncTree.runChildNode (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:114:8)
+    at AsyncTree.walkDown (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:80:10)
+    at AsyncTree.walkUp (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:97:8)
+    at AsyncTree.walkDown (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:90:12)
+    at AsyncTree.traverse (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\core\queue.js:73:8)
+ERROR: Unable to locate element: &quot;#remove-all-items-button&quot; using: css selector
+    at pressRemoveAllItemsButton (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:219:21)
+    at Object.Suppression de tous les produits dans le panier (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:224:5)
+    at Module.call (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\module.js:62:34)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\testcase.js:70:29
+    at _fulfilled (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:834:54)
+    at self.promiseDispatch.done (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:863:30)
+    at Promise.promise.promiseDispatch (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:796:13)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:556:49
+    at runSingle (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:137:13)
+    at flush (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:125:13)
+ERROR: Unable to locate element: &quot;#remove-all-items-button&quot; using: css selector
+    at pressRemoveAllItemsButton (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:219:21)
+    at Object.Suppression de tous les produits dans le panier (E:\Etudes\Polytechnique\SiteWeb\TP3\tests\e2e\3-shopping-cart.js:231:5)
+    at Module.call (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\module.js:62:34)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\nightwatch\lib\runner\testcase.js:70:29
+    at _fulfilled (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:834:54)
+    at self.promiseDispatch.done (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:863:30)
+    at Promise.promise.promiseDispatch (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:796:13)
+    at E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:556:49
+    at runSingle (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:137:13)
+    at flush (E:\Etudes\Polytechnique\SiteWeb\TP3\node_modules\q\q.js:125:13)
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>

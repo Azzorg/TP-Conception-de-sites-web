@@ -91,7 +91,7 @@ function validateShoppingCartTable(client, productsList) {
     });
   });
   client.assert.visible(config.elements.count,
-    "Le nombre de produits dans le panier doit pas être visible.");
+    "Le nombre de produits dans le panier doit être visible.");
 
   var quantity = productsList.reduce(function(sum, product) {
     return sum + product.quantity;
